@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Geist+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 60 30% 96%; /* Off-white/cream */
+  --foreground: 0 0% 10%;   /* Jet black */
+  
+  --primary: 265 100% 60%;  /* Neon Purple */
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 0 0% 100%;
+  --secondary-foreground: 0 0% 10%;
+  
+  --muted: 60 10% 90%;
+  --muted-foreground: 0 0% 40%;
+  
+  --accent: 50 100% 50%;    /* Bright Yellow for highlights */
+  --accent-foreground: 0 0% 10%;
+  
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 0 0% 10%;
+  --input: 0 0% 10%;
+  --ring: 265 100% 60%;
+  
+  --radius: 0.5rem;
+  
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+}
+
+@layer base{
+    body{
+        @apply bg-background text-foreground antialiased selection:bg-primary selection:text-white;
+        font-family: var(--font-display);
+    }
+
+     h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply font-bold tracking-tight text-foreground;
+  }
+
+  code, pre, .mono {
+    font-family: var(--font-mono);
+  }
+}
+@layer components {
+  .brutal-card {
+    @apply bg-white border-2 border-black rounded-lg transition-all duration-200;
+    box-shadow: 4px 4px 0px 0px #000000;
+  }
+  
+  .brutal-card:hover {
+    box-shadow: 6px 6px 0px 0px #000000;
+    transform: translate(-2px, -2px);
+  }
+
+  .brutal-btn {
+    @apply px-6 py-3 border-2 border-black rounded-lg font-bold uppercase tracking-wide transition-all duration-150 active:translate-y-1 active:translate-x-1 active:shadow-none;
+    box-shadow: 4px 4px 0px 0px #000000;
+  }
+
+  .brutal-btn-primary {
+    @apply brutal-btn bg-primary text-white hover:bg-primary/90;
+  }
+
+  .brutal-btn-secondary {
+    @apply brutal-btn bg-white text-black hover:bg-gray-50;
+  }
+
+  .brutal-input {
+    @apply w-full px-4 py-3 border-2 border-black rounded-lg font-mono focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all;
+    box-shadow: 2px 2px 0px 0px #000000;
+  }
+  
+  .brutal-input:focus {
+    box-shadow: 4px 4px 0px 0px var(--primary);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-left: 2px solid black;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #000;
+    border: 2px solid #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+  }
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
