@@ -3,7 +3,7 @@ import {
   type Confession, type InsertConfession, 
   type Comment, type InsertComment,
   type VoteType
-} from "@shared/schema";
+} from '../shared/schema'
 import { db } from "./db";
 import { eq, sql, desc, asc } from "drizzle-orm";
 
