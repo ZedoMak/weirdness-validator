@@ -2,8 +2,8 @@ import express, { type Request, Response, NextFunction } from "express";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-import { registerRoutes } from "../server/routes";
-import { serveStatic } from "../server/static";
+import { registerRoutes } from "./routes";
+import { serveStatic } from "./static";
 import { createServer } from "http";
 
 const app = express();
@@ -84,7 +84,7 @@ app.use((req, res, next) => {
   if (process.env.NODE_ENV === "production") {
     serveStatic(app);
   } else {
-    const { setupVite } = await import("../server/vite");
+    const { setupVite } = await import("./vite");
     await setupVite(httpServer, app);
   }
 
@@ -92,14 +92,18 @@ app.use((req, res, next) => {
   // Other ports are firewalled. Default to 5000 if not specified.
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
-  const port = parseInt(process.env.PORT || "5000", 10);
-  httpServer.listen(
-    {
-      port,
-      host: "localhost",
-    },
-    () => {
-      log(`serving on port ${port}`);
-    },
-  );
+  if (process.env.NODE_ENV !== "production" || !process.env.VERCEL) {
+    const port = parseInt(process.env.PORT || "5000", 10);
+    httpServer.listen(
+      {
+        port,
+        host: "localhost",
+      },
+      () => {
+        log(`serving on port ${port}`);
+      },
+    );
+  }
 })();
+
+export default app;
