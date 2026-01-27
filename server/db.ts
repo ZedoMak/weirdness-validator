@@ -20,6 +20,6 @@ if (!process.env.DATABASE_URL) {
 
 export const pool = new pg.Pool({ 
   connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false } // Required for Neon/Supabase on Vercel
+  ssl: true // Simpler SSL config for Vercel
 });
 export const db = drizzle(pool, { schema });

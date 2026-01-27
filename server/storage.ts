@@ -3,7 +3,7 @@ import {
   type Confession, type InsertConfession, 
   type Comment, type InsertComment,
   type VoteType
-} from '../shared/schema'
+} from "@shared/schema";
 import { db } from "./db";
 import { eq, sql, desc, asc } from "drizzle-orm";
 
@@ -107,17 +107,22 @@ export class DatabaseStorage implements IStorage {
   }
   
   async getStats(): Promise<{ totalConfessions: number, totalVotes: number }> {
-    const [counts] = await db
-      .select({
-        totalConfessions: sql<number>`count(*)`,
-        totalVotes: sql<number>`sum(${confessions.meTooCount} + ${confessions.nopeCount})`
-      })
-      .from(confessions);
-      
-    return {
-      totalConfessions: Number(counts?.totalConfessions || 0),
-      totalVotes: Number(counts?.totalVotes || 0)
-    };
+    try {
+      const counts = await db
+        .select({
+          totalConfessions: sql<number>`count(*)`,
+          totalVotes: sql<number>`COALESCE(sum(${confessions.meTooCount} + ${confessions.nopeCount}), 0)`
+        })
+        .from(confessions);
+        
+      return {
+        totalConfessions: Number(counts[0]?.totalConfessions || 0),
+        totalVotes: Number(counts[0]?.totalVotes || 0)
+      };
+    } catch (error) {
+      console.error("Error fetching stats:", error);
+      return { totalConfessions: 0, totalVotes: 0 };
+    }
   }
 }
 
