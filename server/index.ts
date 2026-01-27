@@ -84,7 +84,7 @@ app.use((req, res, next) => {
   if (process.env.NODE_ENV !== "production" && !process.env.VERCEL) {
     const { setupVite } = await import("./vite");
     await setupVite(httpServer, app);
-  } else if (process.env.NODE_ENV === "production" && !process.env.VERCEL) {
+  } else {
     serveStatic(app);
   }
 
