@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import type { Server } from "http";
-import { storage } from "../server/storage";
-import { api } from "../shared/routes";
+import { storage } from "./storage";
+import { api } from "@shared/routes";
 import { z } from "zod";
 
 const ADJECTIVES = ["Quirky", "Honest", "Silly", "Brave", "Curious", "Sleepy", "Wild", "Calm", "Happy", "Grumpy", "Sneaky", "Loud"];
