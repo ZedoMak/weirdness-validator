@@ -5,6 +5,7 @@ dotenv.config();
 import { registerRoutes } from "./routes.js";
 import { serveStatic } from "./static.js";
 import { createServer } from "http";
+import cors from 'cors';
 
 const app = express();
 const httpServer = createServer(app);
@@ -15,6 +16,8 @@ declare module "http" {
   }
 }
 
+
+app.use(cors())
 app.use(
   express.json({
     verify: (req, _res, buf) => {
