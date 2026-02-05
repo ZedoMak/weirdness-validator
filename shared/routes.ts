@@ -1,5 +1,10 @@
-import { z } from 'zod';
-import { insertConfessionSchema, insertCommentSchema, confessions, comments } from '../shared/schema';
+import { z } from "zod";
+import {
+  insertConfessionSchema,
+  insertCommentSchema,
+  confessions,
+  comments,
+} from "./schema.js";
 
 export const errorSchemas = {
   validation: z.object({

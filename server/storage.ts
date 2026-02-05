@@ -3,8 +3,8 @@ import {
   type Confession, type InsertConfession, 
   type Comment, type InsertComment,
   type VoteType
-} from "@shared/schema";
-import { db } from "./db";
+} from "../shared/schema.js";
+import { db } from "./db.js";
 import { eq, sql, desc, asc } from "drizzle-orm";
 
 export interface IStorage {

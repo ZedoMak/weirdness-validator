@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import type { Server } from "http";
-import { storage } from "./storage";
-import { api } from "@shared/routes";
+import { storage } from "./storage.js";
+import { api } from "../shared/routes.js";
 import { z } from "zod";
 
 const ADJECTIVES = ["Quirky", "Honest", "Silly", "Brave", "Curious", "Sleepy", "Wild", "Calm", "Happy", "Grumpy", "Sneaky", "Loud"];
@@ -178,4 +178,6 @@ async function seedDatabase() {
 }
 
 // Call seed after a short delay to ensure DB is ready
-setTimeout(seedDatabase, 2000);
+if (process.env.NODE_ENV !== "production" && !process.env.VERCEL) {
+  setTimeout(seedDatabase, 2000);
+}

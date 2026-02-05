@@ -10,6 +10,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { formatDistanceToNow } from "date-fns";
 
+type CommentFormValues = Omit<CreateCommentRequest, "confessionId">;
+
 interface CommentsDrawerProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -22,12 +24,12 @@ export function CommentsDrawer({ open, onOpenChange, confessionId, confessionCon
   const createComment = useCreateComment();
   const likeComment = useLikeComment();
 
-  const form = useForm<CreateCommentRequest>({
+  const form = useForm<CommentFormValues>({
     resolver: zodResolver(insertCommentSchema.omit({ confessionId: true })),
     defaultValues: { content: "" },
   });
 
-  const onSubmit = (data: CreateCommentRequest) => {
+  const onSubmit = (data: CommentFormValues) => {
     createComment.mutate({ confessionId, ...data }, {
       onSuccess: () => form.reset(),
     });
