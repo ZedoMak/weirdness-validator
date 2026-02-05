@@ -86,10 +86,10 @@ export default function Home() {
             
             <div className="flex gap-2">
               <Select value={category} onValueChange={setCategory}>
-                <SelectTrigger className="w-[140px] border-black font-bold h-10">
+                <SelectTrigger className="w-[140px] border-black font-bold h-10 bg-white">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
-                <SelectContent className="border-2 border-black">
+                <SelectContent className="border-2 border-black bg-white">
                   {categories.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
                 </SelectContent>
               </Select>
@@ -99,7 +99,7 @@ export default function Home() {
                   <Filter className="w-4 h-4 mr-2" />
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="border-2 border-black">
+                <SelectContent className="border-2 border-black bg-white">
                   <SelectItem value="newest">✨ Newest</SelectItem>
                   <SelectItem value="popular">🔥 Popular</SelectItem>
                   <SelectItem value="controversial">🌶️ Controversial</SelectItem>

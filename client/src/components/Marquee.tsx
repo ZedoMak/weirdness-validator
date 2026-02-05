@@ -10,7 +10,7 @@ export function Marquee({ items, speed = 20 }: MarqueeProps) {
   const content = [...items, ...items, ...items];
   
   return (
-    <div className="w-full bg-primary overflow-hidden py-3 border-y-2 border-black whitespace-nowrap">
+    <div className="w-full bg-muted overflow-hidden py-3 border-y-2 border-black whitespace-nowrap">
       <div className="inline-block animate-marquee">
         {content.map((item, i) => (
           <span key={i} className="inline-flex items-center gap-2 mx-8 text-black font-bold font-mono uppercase tracking-widest text-sm">

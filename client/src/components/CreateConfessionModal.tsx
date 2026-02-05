@@ -73,7 +73,7 @@ export function CreateConfessionModal({ children, open, onOpenChange }: CreateCo
                           <SelectValue placeholder="Select a category" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent className="border-2 border-black shadow-[4px_4px_0px_0px_#000]">
+                      <SelectContent className="border-2 border-black bg-white shadow-[4px_4px_0px_0px_#000]">
                         {categories.map((cat) => (
                           <SelectItem key={cat} value={cat} className="font-mono focus:bg-primary/20 focus:text-black cursor-pointer">
                             {cat}
