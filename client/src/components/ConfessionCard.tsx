@@ -39,14 +39,26 @@ export function ConfessionCard({ confession, index }: ConfessionCardProps) {
   const [userVote, setUserVote] = useState<"meToo" | "nope" | null>(getStoredVote());
 
   const handleVote = (type: "meToo" | "nope") => {
-    if (userVote) return; // Prevent double voting
+    if (userVote) return;
     
-    voteMutation.mutate({ id: confession.id, type });
-    setUserVote(type);
-    localStorage.setItem(`vote_${confession.id}`, type);
-    
-    // Simple confetti effect could go here
-  };
+    voteMutation.mutate(
+      { id: confession.id, type },
+      {
+        onSuccess: () => {
+          setUserVote(type);
+          localStorage.setItem(`vote_${confession.id}`, type);
+        },
+        onError: () => {
+          toast({
+            title: "Vote Failed",
+            description: "Something went wrong. Please try again.",
+            variant: "destructive",
+          });
+        },
+      }
+    );
+};
+
 
   const handleShare = () => {
     navigator.clipboard.writeText(`${window.location.origin}/confession/${confession.id}`);
