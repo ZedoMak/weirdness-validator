@@ -72,7 +72,7 @@ Key folders:
 ### 1. Clone and install
 
 ```bash
-git clone <your-repo-url> weirdness-validator
+git clone https://github.com/ZedoMak/weirdness-validator.git
 cd weirdness-validator
 npm install
 ```
