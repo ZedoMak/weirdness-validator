@@ -60,13 +60,22 @@ export function ConfessionCard({ confession, index }: ConfessionCardProps) {
 };
 
 
-  const handleShare = () => {
-    navigator.clipboard.writeText(`${window.location.origin}/confession/${confession.id}`);
+const handleShare = async () => {
+  try {
+    await navigator.clipboard.writeText(`${window.location.origin}/confession/${confession.id}`);
     toast({
       title: "Link Copied!",
       description: "Share it with your weird friends.",
     });
-  };
+  } catch (error) {
+    toast({
+      title: "Copy Failed",
+      description: "Could not copy to clipboard. Try again.",
+      variant: "destructive",
+    });
+  }
+};
+
 
   return (
     <motion.div
