@@ -5,7 +5,7 @@ interface MarqueeProps {
   speed?: number;
 }
 
-export function Marquee({ items, speed = 20 }: MarqueeProps) {
+export function Marquee({ items, speed = 10 }: MarqueeProps) {
   // Triple the items to ensure seamless loop
   const content = [...items, ...items, ...items];
   
