@@ -146,6 +146,7 @@ const handleShare = async () => {
               )}
             >
               🙋‍♀️ Me Too
+              <span className="ml-3">{confession.meTooCount} votes</span>
             </button>
             <button
               onClick={() => handleVote("nope")}
@@ -159,6 +160,7 @@ const handleShare = async () => {
               )}
             >
               🤦‍♂️ Nope
+              <span className="ml-3">{confession.nopeCount} votes</span>
             </button>
           </div>
         </div>
